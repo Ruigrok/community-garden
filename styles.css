@@ -26,6 +26,10 @@
     opacity: 0;
 }
 
+.modal.bottom-sheet {
+    max-height: 80%;
+}
+
   /* label color */
    .input-field label {
      color: #000;

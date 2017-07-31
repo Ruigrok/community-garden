@@ -145,8 +145,10 @@
                                         </div>
                                     </div>
                                     <div class="card-action center">
-                                        <a href="#">Start Over</a>
+                                        <a href="#" id="start-over">Start Over</a>
                                         <a href="#">Collect Your Share</a>
+                                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+
                                         <a href="#">See What's Popular</a>
                                     </div>
                                 </div>
@@ -154,9 +156,27 @@
                         </div>
                     </div>
                 </div>
+
+
+
             </div>
+
+
         </div>
     </div>
+
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
+
 
 
     <footer class="page-footer grey darken-3">
@@ -177,48 +197,10 @@
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.0/js/materialize.min.js"></script>
+<script type="text/javascript" src="main.js"></script>
 
 <script>
-    $(document).ready(function () {
-
-
-
-        var selections = [];
-
-        $(".veg").on("click", function () {
-            var veggie = $(this).attr("data-image");
-
-            if (selections.length < 3) {
-
-                var column = $("<div>");
-                column.addClass("col s3");
-
-                var veggieImage = $("<img>");
-                veggieImage.attr("src", veggie);
-                veggieImage.addClass("image-responsive");
-
-                column.html(veggieImage);
-                $("#veggies").append(column);
-            }
-
-            if (selections.length === 4) {
-                var column = $("<div>");
-                column.addClass("col s3");
-
-                var veggieImage = $("<img>");
-                veggieImage.attr("src", veggie);
-                veggieImage.addClass("image-responsive");
-
-                column.html(veggieImage);
-                $("#veggies").append(column);
-
-
-
-            }
-        })
-
-    });
-
+ 
 </script>
 
 </body>
