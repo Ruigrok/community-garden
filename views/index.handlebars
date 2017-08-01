@@ -1,0 +1,57 @@
+<div class="image-wrapper">
+    <div id="content-wrapper">
+        <div class="row">
+
+            <div class="col s12 m5">
+                {{#grouped_each 5 veggies}}
+                <div class="col s12 valign-wrapper">
+                    {{#each this }}
+                    <img class="responsive-img hvr-animate veg" data-name="{{ name }}" data-image="{{ loc }}" src="{{ loc }}">                    {{/each}}
+                </div>
+                {{/grouped_each}}
+            </div>
+
+            <div class="col s12 m6">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="card large grey darken-1" style="opacity:0.9">
+                            <div class="card-content white-text">
+                                <span class="card-title">Pick Your Favorites!</span>
+                                <p>We're putting together this week's CSA boxes. Pick four vegetable types that you are most
+                                    excited for, and we'll make sure you get an extra portion of your favorites with this
+                                    week's delivery.</p>
+
+                                <form class="col s12">
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <select>
+                                                <option value="" disabled selected>Select your username</option>
+                                                <option value="1">Option 1</option>
+                                                <option value="2">Option 2</option>
+                                                <option value="3">Option 3</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <div>
+                                    <div class="row">
+                                        <div class="col s12" id="veggies">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-action center">
+                                    <a class="waves-effect waves-light btn">Start Over</a>
+                                    <a class="waves-effect waves-light btn">Review Order</a>
+                                    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Collect Share</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

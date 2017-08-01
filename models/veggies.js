@@ -2,7 +2,7 @@
 module.exports = function(sequelize, DataTypes) {
   var Veggies = sequelize.define('Veggies', {
     name: DataTypes.STRING,
-    href: DataTypes.STRING,
+    loc: DataTypes.STRING,
     quantity: DataTypes.INTEGER
   }, {
     classMethods: {
