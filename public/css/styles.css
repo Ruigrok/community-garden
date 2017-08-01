@@ -30,6 +30,22 @@
     max-height: 80%;
 }
 
+.card {
+  overflow: visible;
+}
+
+.card.large .card-content {
+    overflow: visible;
+}
+
+.card.large .card-content {
+    margin-bottom: 10px;
+}
+
+.btn {
+    margin-bottom: 2px;
+}
+
   /* label color */
    .input-field label {
      color: #000;

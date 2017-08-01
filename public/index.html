@@ -116,12 +116,6 @@
                         </div>
                     </div>
 
-                    <div class="col s5 offset-s4">
-                        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                            <i class="material-icons right">send</i>
-                        </button>
-                    </div>
-
                 </div>
 
                 <div class="col s12 m6">
@@ -132,43 +126,29 @@
                                     <span class="card-title">Pick Your Favorites!</span>
                                     <p>We're putting together this week's CSA boxes. Pick four vegetable types that you are
                                         most excited for, and we'll make sure you get an extra portion of your favorites
-                                        with the rest of your delivery.</p>
-                                    <!--
-                                    <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Select Your Name</a>
-                                    <ul id='dropdown1' class='dropdown-content'>
-                                        <li><a href="#!">one</a></li>
-                                        <li><a href="#!">two</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#!">three</a></li>
-                                        <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-                                        <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-                                    </ul>
+                                        with this week's delivery.</p>
 
-                                    <ul class="collapsible black" data-collapsible="accordion">
-                                        <li>
-                                            <div class="collapsible-header black"><i class="material-icons">filter_drama</i>New to us? Add yourself here</div>
-                                            <div class="collapsible-body">
-                                                <div class="input-field col s12">
-                                                    <span>
-                                                    <input placeholder="Enter your name here" id="first_name" type="text" class="validate">
-                                                    </span>
-                                                </div>
+                                    <form class="col s12">
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <select>
+                                                        <option value="" disabled selected>Select your username</option>
+                                                        <option value="1">Option 1</option>
+                                                        <option value="2">Option 2</option>
+                                                        <option value="3">Option 3</option>
+                                                        <option value="1">Option 1</option>
+                                                        <option value="2">Option 2</option>
+                                                        <option value="3">Option 3</option>
+                                                        <option value="1">Option 1</option>
+                                                        <option value="2">Option 2</option>
+                                                        <option value="3">Option 3</option>
+                                                        <option value="1">Option 1</option>
+                                                        <option value="2">Option 2</option>
+                                                        <option value="3">Option 3</option>
+                                                        </select>
                                             </div>
-                                        </li>
-                                    </ul>
--->
-
-                                    <div class="input-field">
-                                        <select>
-                                            <option value="" disabled selected>Choose your option</option>
-                                            <option value="1">Option 1</option>
-                                            <option value="2">Option 2</option>
-                                            <option value="3">Option 3</option>
-                                            </select>
-                                        <label>Materialize Select</label>
-                                    </div>
-                                    
-
+                                        </div>
+                                    </form>
 
                                     <div>
                                         <div class="row">
@@ -177,11 +157,10 @@
                                         </div>
                                     </div>
                                     <div class="card-action center">
-                                        <a href="#" id="start-over">Start Over</a>
-                                        <a href="#">Collect Your Share</a>
-                                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+                                        <a class="waves-effect waves-light btn">Start Over</a>
+                                        <a class="waves-effect waves-light btn">Review Order</a>
+                                        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Collect Share</a>
 
-                                        <a href="#">See What's Popular</a>
                                     </div>
                                 </div>
                             </div>
@@ -189,11 +168,7 @@
                     </div>
                 </div>
 
-
-
             </div>
-
-
         </div>
     </div>
 
@@ -228,6 +203,9 @@
 <script type="text/javascript" src="js/main.js"></script>
 
 <script>
+    $(document).ready(function () {
+        $('select').material_select();
+    });
 
 </script>
 
