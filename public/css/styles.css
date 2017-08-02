@@ -8,7 +8,9 @@
     flex: 1 0 auto;
   }
 
-
+/* .row {
+    margin-bottom: 0px;
+} */
 
 .image-wrapper {
   background-position: center;
@@ -26,9 +28,9 @@
     opacity: 0;
 }
 
-.modal.bottom-sheet {
+/* .modal.bottom-sheet {
     max-height: 80%;
-}
+} */
 
 .card {
   overflow: visible;
@@ -44,6 +46,10 @@
 
 .btn {
     margin-bottom: 2px;
+}
+
+.modal .modal-footer {
+    height: auto;
 }
 
   /* label color */

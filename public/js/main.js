@@ -1,35 +1,26 @@
+
+
+
+
+
 $(document).ready(function () {
 
-    // Handlebars Helper for formatting veggies into rows and columns
 
-    Handlebars.registerHelper('grouped_each', function (every, context, options) {
-        var out = "", subcontext = [], i;
-        if (context && context.length > 0) {
-            for (i = 0; i < context.length; i++) {
-                if (i > 0 && i % every === 0) {
-                    out += options.fn(subcontext);
-                    subcontext = [];
-                }
-                subcontext.push(context[i]);
-            }
-            out += options.fn(subcontext);
-        }
-        return out;
-    });
-
-
+    // Functionality for Materialize dropdown
     $(document).ready(function () {
         $('select').material_select();
     });
 
+    // Functionality for Materialize modal
     $('.modal').modal();
 
+    // Adding clicked vegetable images to new div
     var selections = [];
 
     $(".veg").on("click", function () {
         var veggie = $(this).attr("data-image");
 
-        if (selections.length < 3) {
+        if (selections.length < 4) {
 
             var column = $("<div>");
             column.addClass("col s3");
@@ -40,25 +31,28 @@ $(document).ready(function () {
 
             column.html(veggieImage);
             $("#veggies").append(column);
-        }
 
-        if (selections.length === 4) {
-            var column = $("<div>");
-            column.addClass("col s3");
+            selections.push($(this).attr("data-name"));
 
-            var veggieImage = $("<img>");
-            veggieImage.attr("src", veggie);
-            veggieImage.addClass("image-responsive");
-
-            column.html(veggieImage);
-            $("#veggies").append(column);
+            if (selections.length === 4) {
+                $('#submit').removeClass("disabled");
+            }
+            console.log(selections);
         }
     });
 
-    $("#start-over").on("click", function () {
+    // Use "Start Over" button to reset selected vegetables 
+    $('#start-over').on("click", function () {
+        $('#veggies').empty();
+        selections = [];
 
-
+        if (!$('#submit').hasClass("disabled")) {
+            $('#submit').addClass("disabled");
+        }
     })
 
-    //
+    $('#new-user-modal').on("click", function() {
+        $('#modal1').modal('open');
+    })
+
 });

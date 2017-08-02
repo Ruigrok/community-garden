@@ -6,7 +6,10 @@
                 {{#grouped_each 5 veggies}}
                 <div class="col s12 valign-wrapper">
                     {{#each this }}
-                    <img class="responsive-img hvr-animate veg" data-name="{{ name }}" data-image="{{ loc }}" src="{{ loc }}">                    {{/each}}
+                    <div class="col s2">
+                        <img class="responsive-img hvr-animate veg" data-name="{{ name }}" data-image="{{ loc }}" src="{{ loc }}">
+                    </div>
+                    {{/each}}
                 </div>
                 {{/grouped_each}}
             </div>
@@ -23,7 +26,7 @@
 
                                 <form class="col s12">
                                     <div class="row">
-                                        <div class="input-field col s12">
+                                        <div class="input-field col s10">
                                             <select>
                                                 <option value="" disabled selected>Select your username</option>
                                                 <option value="1">Option 1</option>
@@ -31,20 +34,23 @@
                                                 <option value="3">Option 3</option>
                                             </select>
                                         </div>
+                                        <a class="btn-floating btn-large modal-trigger" data-target="modal1" id="new-user-modal">
+                                            <i class="material-icons">add</i></a>
                                     </div>
                                 </form>
 
-                                <div>
-                                    <div class="row">
-                                        <div class="col s12" id="veggies">
+
+                                <div class="row">
+                                    <div class="col s12" id="veggies">
+                                        <div class="row">
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="card-action center">
-                                    <a class="waves-effect waves-light btn">Start Over</a>
-                                    <a class="waves-effect waves-light btn">Review Order</a>
-                                    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Collect Share</a>
+                                    <a class="waves-effect waves-light btn" id="start-over">Start Over</a>
+                                    <a class="waves-effect waves-light disabled btn" id="submit">Submit</a>
+                                    <a class="waves-effect waves-light btn modal-trigger" id="collect" href="#modal2">Collect Share</a>
                                 </div>
 
                             </div>
@@ -52,6 +58,69 @@
                     </div>
                 </div>
             </div>
+
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <h4>Welcome!</h4>
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s8">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input id="icon_prefix" type="text" class="validate">
+                                <label for="icon_prefix">Your Username</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Add</a>
+                </div>
+            </div>
+
+            <div id="modal2" class="modal bottom-sheet">
+                <div class="modal-content">
+                    <h4>Current Orders</h4>
+                    <ul class="collection">
+                        <li class="collection-item avatar">
+                            <img src="images/yuna.jpg" alt="" class="circle">
+                            <span class="title">Title</span>
+                            <p>First Line <br> <a href="#!" class="secondary-content">Edit Order</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="secondary-content">Collect Share</a>
+                                <br>
+                                <a href="#!" class="secondary-content">Edit Order</a>
+                            </p>
+                        </li>
+                        <li class="collection-item avatar">
+                            <i class="material-icons circle">folder</i>
+                            <span class="title">Title</span>
+                            <p>First Line <br> Second Line
+                            </p>
+                            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                        </li>
+                        <li class="collection-item avatar">
+                            <i class="material-icons circle green">insert_chart</i>
+                            <span class="title">Title</span>
+                            <p>First Line <br> Second Line
+                            </p>
+                            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                        </li>
+                        <li class="collection-item avatar">
+                            <i class="material-icons circle red">play_arrow</i>
+                            <span class="title">Title</span>
+                            <p>First Line <br> Second Line
+                            </p>
+                            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Done</a>
+                </div>
+            </div>
+
+
         </div>
     </div>
 </div>

@@ -3,7 +3,13 @@ module.exports = function (sequelize, DataTypes) {
   var Order = sequelize.define('Order', {
     veggies: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      get: function () {
+        return this.getDataValue('veggies').split(', ')
+      },
+      set: function (val) {
+        this.setDataValue('favColors', val.join(','));
+      }
     },
     collected: {
       type: DataTypes.BOOLEAN,

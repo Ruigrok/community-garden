@@ -1,6 +1,5 @@
 
-
-var veggies = [
+var vegData = [
     {
         "name": "asparagus",
         "loc": "images/asset1.png",
@@ -126,5 +125,7 @@ var veggies = [
         "loc": "images/asset25.png",
         "quantity": null
     },
-]
+];
+
+module.exports = vegData;
 
