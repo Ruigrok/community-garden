@@ -7,44 +7,48 @@ module.exports = function (app) {
 
     app.get("/", function (req, res) {
 
+        var query1 = db.Veggies.findAll({})
+        var query2 = db.User.findAll({})
+
         Promise.all([
-            db.Veggies.findAll({}),
-            db.User.findAll({}),
-            db.Order.findAll({ include: [db.User] })
+            query1,
+            query2
+            //db.Order.findAll({ include: [db.User] })
         ])
-            .spread(function (dbVeggies, dbUser, dbOrder) {
-                res.render('./index', { veggies: dbVeggies, users: dbUser, orders: dbOrders });
+            .then(function ([dbVeggies, dbUser]) {
+                res.render('index', { veggies: dbVeggies, users: dbUser });
             })
 
-            .catch(function (err) { console.error(err); });
     });
 
-app.post("/api/users", function (req, res) {
-    db.User.create(req.body).then(function () {
-        res.redirect("/");
+    app.post("/api/users", function (req, res) {
+        db.User.create(req.body).then(function (response) {
+            res.json(response);
+           // req.method = 'GET';
+           // res.redirect("/");
+        });
     });
-});
 
-  app.post("/api/orders", function (req, res) {
-    db.Order.create(req.body).then(function () {
-      res.redirect("/");
+    app.post("/api/orders", function (req, res) {
+        db.Order.create(req.body).then(function () {
+            //res.redirect("/");
+        });
     });
-  });
 
-  // PUT route for updating posts
-  app.put("/api/orders", function (req, res) {
-    db.Post.update(
-      req.body,
-      {
-        where: {
-          id: req.body.id
-        }
-      }).then(function () {
-        res.redirect("/");
-      });
-  });
+    // PUT route for updating posts
+    app.put("/api/orders", function (req, res) {
+        db.Post.update(
+            req.body,
+            {
+                where: {
+                    id: req.body.id
+                }
+            }).then(function () {
+                res.redirect("/");
+            });
+    });
 
-//
+    //
 };
 
 

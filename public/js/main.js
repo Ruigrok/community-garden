@@ -1,27 +1,22 @@
 
-
-
-
+// Adding clicked vegetable images to new div
+var selections = [];
 
 $(document).ready(function () {
 
-
-    // Functionality for Materialize dropdown
-    $(document).ready(function () {
-        $('select').material_select();
-    });
+    // Functionality for Materialize select dropdown
+    $('select').material_select();
 
     // Functionality for Materialize modal
     $('.modal').modal();
 
-    // Adding clicked vegetable images to new div
-    var selections = [];
-
     $(".veg").on("click", function () {
+        var user = $('#select-user').val();
+
         var veggie = $(this).attr("data-image");
 
         if (selections.length < 4) {
-
+            console.log(user);
             var column = $("<div>");
             column.addClass("col s3");
 
@@ -34,12 +29,19 @@ $(document).ready(function () {
 
             selections.push($(this).attr("data-name"));
 
-            if (selections.length === 4) {
+            if (selections.length === 4 & user !== null) {
                 $('#submit').removeClass("disabled");
             }
-            console.log(selections);
         }
     });
+
+    $('#select-user').on("change", function () {
+        var user = $('#select-user').val();
+        if (selections.length === 4 & user != null) {
+            $('#submit').removeClass("disabled");
+
+        }
+    })
 
     // Use "Start Over" button to reset selected vegetables 
     $('#start-over').on("click", function () {
@@ -51,8 +53,15 @@ $(document).ready(function () {
         }
     })
 
-    $('#new-user-modal').on("click", function() {
+    $('#new-user-modal').on("click", function () {
+        //$('.userInp').val("");
+        //$('#reset-input').removeClass("active");
         $('#modal1').modal('open');
+    });
+
+    $('#submit').on("click", function () {
+        console.log($("#select-user").val());
     })
+
 
 });

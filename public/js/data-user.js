@@ -1,17 +1,17 @@
 
 var userData = [
     {
-        "name": "Andrew",
+        "name": "Andrew"
     },
     {
-        "name": "Kendall",
+        "name": "Kendall"
     },
     {
-        "name": "Michelle",
+        "name": "Michelle"
     },
     {
-        "name": "Ezra",
-    },
+        "name": "Ezra"
+    }
     
 ];
 

@@ -8,7 +8,7 @@ module.exports = function (sequelize, DataTypes) {
         return this.getDataValue('veggies').split(', ')
       },
       set: function (val) {
-        this.setDataValue('favColors', val.join(','));
+        this.setDataValue('veggies', val.join(','));
       }
     },
     collected: {

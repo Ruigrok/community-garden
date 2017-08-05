@@ -11,13 +11,15 @@ var nodemon = require("nodemon");
 // Sets up the Express App
 // =============================================================
 var app = express();
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 3000;
 
 // Requiring our models for syncing
 var db = require("./models");
 
 // Requiring data
-var vegData = require("./public/js/veg-data.js")
+var vegData = require("./public/js/data-veg.js")
+var userData = require("./public/js/data-user.js")
+var orderData = require("./public/js/data-order.js")
 
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
@@ -45,7 +47,8 @@ var hbs = exphbs.create({
         out += options.fn(subcontext);
       }
       return out;
-    }
+    },
+    
   }
 });
 
@@ -58,17 +61,25 @@ app.use(express.static("public"));
 
 // Routes
 // =============================================================
-require("./routes/load-veg-api-routes.js")(app);
-require("./routes/order-api-routes.js")(app);
-require("./routes/user-api-routes.js")(app);
+require("./routes/api-routes.js")(app);
+//require("./routes/order-api-routes.js")(app);
+//require("./routes/user-api-routes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
 db.sequelize.sync({ force: true }).then(function () {
 
   db.Veggies.bulkCreate(vegData).then(function () {
-    return db.Veggies.findAll()
+    return db.Veggies.findAll();
   });
+
+  db.User.bulkCreate(userData).then(function () {
+    return db.User.findAll();
+  })
+
+  db.Order.bulkCreate(orderData).then(function () {
+    return db.Order.findAll();
+  })
 
   app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
