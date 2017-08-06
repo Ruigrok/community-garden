@@ -13,27 +13,69 @@ module.exports = function (app) {
         Promise.all([
             query1,
             query2
-            //db.Order.findAll({ include: [db.User] })
         ])
             .then(function ([dbVeggies, dbUser]) {
                 res.render('index', { veggies: dbVeggies, users: dbUser });
             })
-
     });
 
     app.post("/api/users", function (req, res) {
-        db.User.create(req.body).then(function (response) {
-            res.json(response);
-           // req.method = 'GET';
-           // res.redirect("/");
-        });
+        db.User.create(req.body)
+            .then(function (response) {
+                res.json(response);
+            });
     });
 
     app.post("/api/orders", function (req, res) {
         db.Order.create(req.body).then(function () {
-            //res.redirect("/");
+            res.json(response);
         });
     });
+
+    app.get("/orders", function (req, res) {
+
+        var query1 = db.Veggies.findAll({});
+        var query2 = db.Order.findAll({ include: [db.User] })
+
+        Promise.all([
+            query1,
+            query2
+        ])
+            .then(function ([dbVeggies, dbOrder]) {
+
+                var allVeg = [];
+                var orderData = [];
+
+                for (var j = 0; j < dbVeggies.length; j++) {
+                    allVeg.push(dbVeggies[j].name)
+                }
+
+                for (var i = 0; i < dbOrder.length; i++) {
+
+                    var vegImages = [];
+
+                    var orderedVeggies = dbOrder[i].veggies;
+
+                    orderedVeggies.forEach(function (x) {
+                        vindex = allVeg.indexOf(x);
+                        vegImages.push(dbVeggies[vindex].loc)
+                    })
+
+                    var order = {
+                        id: dbOrder[i].id,
+                        veggies: dbOrder[i].veggies,
+                        collected: dbOrder[i].collected,
+                        name: dbOrder[i].User.name,
+                        vegImages: vegImages
+                    }
+                    orderData.push(order);
+                }
+                res.json(orderData);
+                res.render('orders-display', { orders: orderData });
+
+            });
+    });
+
 
     // PUT route for updating posts
     app.put("/api/orders", function (req, res) {
@@ -54,76 +96,3 @@ module.exports = function (app) {
 
 
 
-
-
-
-
-
-/* 
-var query1 = db.Veggies.findAll({});
-
-var query2 = db.User.findAll({});
-
-var query3 = db.Order.findAll({});
-
-db.Veggies.findAll({})
-    .then(function (dbVeggies) {
-        res.render("index", { veggies: dbVeggies });
-    });
-
-db.User.findAll({})
-    .then(function (dbUsers) {
-        res.render("index", { users: dbUsers })
-    });
-
-db.Order.findAll({})
-    .then(function (dbOrders) {
-        res.render("index", { orders: dbOrders })
-    });
-
-Promise.all([
-    db.query('select * from foo where ...'),
-    db.query('select * from bar where ...')
-])
-    .spread(function (foo, bar) {
-        /* prepare data as you need them 
-        res.render('./index', { foo_table: foo, bar_table: bar });
-    });
-
-
-
-
-app.get('/markers', function (req, res) {
-    var markers = [];
-    var marker1 = { "id": 1, "name": "London" };
-
-    // Get the lat and lng based on the address
-    var prom1 = geocoding(marker1.name).then(function (geocode) {
-        marker1.lat = geocode[0].latitude;
-        marker1.lng = geocode[0].longitude;
-        markers.push(marker1);
-    }, function (error) {
-        console.log(error);
-    })
-
-    var marker2 = { "id": 2, "name": "Chicago" };
-    var prom2 = geocoding(marker2.name).then(function (geocode) {
-        marker2.lat = geocode[0].latitude;
-        marker2.lng = geocode[0].longitude;
-        markers.push(marker2);
-    }, function (error) {
-        console.log(error);
-    });
-
-    var marker3 = { "id": 3, "name": "Munich" };
-    var prom3 = geocoding(marker3.name).then(function (geocode) {
-        marker3.lat = geocode[0].latitude;
-        marker3.lng = geocode[0].longitude;
-        markers.push(marker3);
-    }, function (error) {
-        console.log(error);
-    });
-    // return the lat and lng array to the client
-
-    Promise.all([prom1, prom2, prom3]).then(function () { res.json(markers); }).catch(function (err) { console.error(err); });
-}) */

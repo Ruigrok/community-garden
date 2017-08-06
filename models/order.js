@@ -5,7 +5,7 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       get: function () {
-        return this.getDataValue('veggies').split(', ')
+        return this.getDataValue('veggies').split(',')
       },
       set: function (val) {
         this.setDataValue('veggies', val.join(','));

@@ -8,6 +8,11 @@
     flex: 1 0 auto;
   }
 
+.container {
+    width: 85%;
+    margin-top: 20px;
+}
+
 /* .row {
     margin-bottom: 0px;
 } */

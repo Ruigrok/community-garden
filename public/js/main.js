@@ -16,7 +16,7 @@ $(document).ready(function () {
         var veggie = $(this).attr("data-image");
 
         if (selections.length < 4) {
-            console.log(user);
+
             var column = $("<div>");
             column.addClass("col s3");
 
@@ -59,9 +59,6 @@ $(document).ready(function () {
         $('#modal1').modal('open');
     });
 
-    $('#submit').on("click", function () {
-        console.log($("#select-user").val());
-    })
 
 
 });

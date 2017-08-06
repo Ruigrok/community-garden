@@ -32,7 +32,7 @@ var exphbs = require('express-handlebars');
 
 var hbs = exphbs.create({
   defaultLayout: 'main',
-  // Specify helpers which are only registered on this instance.
+  // Specify helpers which are only registered on this instance
   helpers: {
     grouped_each: function (every, context, options) {
       var out = "", subcontext = [], i;
@@ -62,8 +62,6 @@ app.use(express.static("public"));
 // Routes
 // =============================================================
 require("./routes/api-routes.js")(app);
-//require("./routes/order-api-routes.js")(app);
-//require("./routes/user-api-routes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================

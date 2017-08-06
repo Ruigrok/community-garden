@@ -1,0 +1,28 @@
+    
+    <div class="container">
+    <div class="row">
+        <div class="col m12 white-text grey darken-1" style="opacity:0.8">
+            <h3>Uncollected</h2>
+            {{#each orders}} {{#unless this.collected}}
+                <div class="divider"></div>
+                <div class="section" data-id="{{this.id}}">
+                    <h5>{{this.name}}</h5>
+                    <p>{{this.veggies}}</p>
+                </div>
+            {{/unless}} {{/each}}
+            <h3>Uncollected</h2>
+            {{#each orders}} {{#if this.collected}}
+                <div class="divider"></div>
+                <div class="section" data-id="{{this.id}}>
+                    <h5>{{this.name}}</h5>
+                    <p>{{this.veggies}}</p>
+                </div>
+            {{/if}} {{/each}}
+        </div>
+        </div>
+    </div>
+
+
+
+
+
