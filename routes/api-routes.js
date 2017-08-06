@@ -1,5 +1,8 @@
-// Requiring our models
+
 var db = require("../models");
+var express = require("express");
+
+
 
 // Routes
 // =============================================================
@@ -78,9 +81,10 @@ module.exports = function (app) {
 
 
     // PUT route for updating posts
-    app.put("/api/orders", function (req, res) {
-        db.Post.update(
-            req.body,
+/*     app.put("/api/orders/:id", function (req, res) {
+        db.Order.update({
+            collected: req.body.collected
+        },
             {
                 where: {
                     id: req.body.id
@@ -88,11 +92,21 @@ module.exports = function (app) {
             }).then(function () {
                 res.redirect("/");
             });
-    });
+    }); */
 
     //
 };
 
 
+/* router.put("/:id", function(req, res) {
+  var condition = "id = " + req.params.id;
 
+  console.log("condition", condition);
 
+  cat.update({
+    sleepy: req.body.sleepy
+  }, condition, function() {
+    res.redirect("/orders");
+  });
+});
+ */
