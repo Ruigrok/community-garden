@@ -1,28 +1,38 @@
-    
-    <div class="container">
+<div class="container">
     <div class="row">
         <div class="col m12 white-text grey darken-1" style="opacity:0.8">
-            <h3>Uncollected</h2>
+            <h3>Uncollected</h3>
             {{#each orders}} {{#unless this.collected}}
-                <div class="divider"></div>
-                <div class="section" data-id="{{this.id}}">
-                    <h5>{{this.name}}</h5>
-                    <p>{{this.veggies}}</p>
+            <div class="divider"></div>
+            <div class="row" data-id="{{this.id}}">
+                <h5>{{this.name}}</h5>
+                {{#each this.vegImages}}
+                <div class="col m1">
+                    <img class="responsive-img" src="{{this}}">
                 </div>
+                {{/each}}
+
+                <div class="col m3 offset-m4">
+                    <form action="/{{this.id}}?_method=PUT" method="POST">
+                        <input type="hidden" name="sleepy" value="false">
+                        <button class="waves-effect waves-light btn btn-large" type="submit">Mark Collected</button>
+                    </form>
+                </div>
+            </div>
             {{/unless}} {{/each}}
-            <h3>Uncollected</h2>
+            <br>
+            <h3>Collected</h3>
             {{#each orders}} {{#if this.collected}}
-                <div class="divider"></div>
-                <div class="section" data-id="{{this.id}}>
-                    <h5>{{this.name}}</h5>
-                    <p>{{this.veggies}}</p>
+            <div class="divider"></div>
+            <div class="row" data-id="{{this.id}}">
+                <h5>{{this.name}}</h5>
+                {{#each this.vegImages}}
+                <div class="col m1">
+                    <img class="responsive-img" src="{{this}}">
                 </div>
+                {{/each}}
+            </div>
             {{/if}} {{/each}}
         </div>
-        </div>
     </div>
-
-
-
-
-
+</div>

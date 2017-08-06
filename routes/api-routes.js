@@ -70,7 +70,7 @@ module.exports = function (app) {
                     }
                     orderData.push(order);
                 }
-                res.json(orderData);
+                //res.json(orderData);
                 res.render('orders-display', { orders: orderData });
 
             });
