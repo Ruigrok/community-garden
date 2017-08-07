@@ -14,6 +14,7 @@
 
                 <div class="col m3 offset-m4">
                     <form action="/api/orders/{{this.id}}?_method=PUT" method="POST">
+                        <input type="hidden" name="veggies" value="{{this.veggies}}">
                         <input type="hidden" name="collected" value="true">
                         <button class="waves-effect waves-light btn btn-large" type="submit">Mark Collected</button>
                     </form>

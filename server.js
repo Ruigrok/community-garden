@@ -72,15 +72,15 @@ require("./routes/api-routes.js")(app);
 db.sequelize.sync({ force: true }).then(function () {
 
   db.Veggies.bulkCreate(vegData).then(function () {
-    return db.Veggies.findAll();
+    //return db.Veggies.findAll();
   });
 
   db.User.bulkCreate(userData).then(function () {
-    return db.User.findAll();
+    //return db.User.findAll();
   })
 
   db.Order.bulkCreate(orderData).then(function () {
-    return db.Order.findAll();
+    //return db.Order.findAll();
   })
 
   app.listen(PORT, function () {

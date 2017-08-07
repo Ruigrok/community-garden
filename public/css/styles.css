@@ -8,6 +8,10 @@
     flex: 1 0 auto;
   }
 
+nav .brand-logo.center {
+    font-family: 'Delius', cursive;
+}
+
 .container {
     width: 85%;
     margin-top: 20px;

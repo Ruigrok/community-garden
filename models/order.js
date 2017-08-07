@@ -1,14 +1,16 @@
 'use strict';
 module.exports = function (sequelize, DataTypes) {
+
   var Order = sequelize.define('Order', {
     veggies: {
       type: DataTypes.STRING,
       allowNull: false,
+
       get: function () {
-        return this.getDataValue('veggies').split(',')
+        return this.getDataValue('veggies').split(",")
       },
-      set: function (val) {
-        this.setDataValue('veggies', val.join(','));
+      set: function (arr) {
+        this.setDataValue('veggies', arr.join(","))
       }
     },
     collected: {
@@ -16,6 +18,30 @@ module.exports = function (sequelize, DataTypes) {
       defaultValue: false
     }
   });
+
+
+
+
+  /*     var Order = sequelize.define('Order', {
+        veggies: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        
+          get() {
+            return this.getDataValue('veggies').split(",")
+          },
+          set(arr) {
+            this.setDataValue('veggies', arr.join(","))
+          },
+    
+        },
+        collected: {
+          type: DataTypes.BOOLEAN,
+          defaultValue: false
+        }
+      }); */
+
+
 
   Order.associate = function (models) {
     // Order should belong to a User
@@ -29,3 +55,6 @@ module.exports = function (sequelize, DataTypes) {
 
   return Order;
 };
+
+
+

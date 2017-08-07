@@ -2,8 +2,6 @@
 var db = require("../models");
 var express = require("express");
 
-
-
 // Routes
 // =============================================================
 module.exports = function (app) {
@@ -30,13 +28,15 @@ module.exports = function (app) {
     });
 
     app.post("/api/orders", function (req, res) {
-        db.Order.create(req.body).then(function () {
+        db.Order.create(req.body).then(function (response) {
             res.json(response);
         });
     });
 
-    app.get("/orders", function (req, res) {
+    var orderData;
 
+    app.get("/orders", function (req, res) {
+        
         var query1 = db.Veggies.findAll({});
         var query2 = db.Order.findAll({ include: [db.User] })
 
@@ -45,12 +45,11 @@ module.exports = function (app) {
             query2
         ])
             .then(function ([dbVeggies, dbOrder]) {
-
                 var allVeg = [];
                 var orderData = [];
 
                 for (var j = 0; j < dbVeggies.length; j++) {
-                    allVeg.push(dbVeggies[j].name)
+                    allVeg.push(dbVeggies[j].name);
                 }
 
                 for (var i = 0; i < dbOrder.length; i++) {
@@ -61,12 +60,14 @@ module.exports = function (app) {
 
                     orderedVeggies.forEach(function (x) {
                         vindex = allVeg.indexOf(x);
-                        vegImages.push(dbVeggies[vindex].loc)
+                        vegImages.push(dbVeggies[vindex].loc);
                     })
+
+                    var vegString = dbOrder[i].veggies.join(",");
 
                     var order = {
                         id: dbOrder[i].id,
-                        veggies: dbOrder[i].veggies,
+                        veggies: vegString,
                         collected: dbOrder[i].collected,
                         name: dbOrder[i].User.name,
                         vegImages: vegImages
@@ -81,32 +82,28 @@ module.exports = function (app) {
 
 
     // PUT route for updating posts
-/*     app.put("/api/orders/:id", function (req, res) {
-        db.Order.update({
-            collected: req.body.collected
-        },
+    app.put("/api/orders/:id", function (req, res) {
+        console.log(req.body);
+        console.log(req.params.id);
+        console.log(req.body.collected);
+
+        var vegArray = req.body.veggies.split(",");
+        console.log(vegArray);
+       db.Order.update(
+            {   veggies: vegArray,
+                collected: req.body.collected},
             {
                 where: {
-                    id: req.body.id
+                    id: req.params.id
                 }
-            }).then(function () {
-                res.redirect("/");
-            });
-    }); */
+            }).then(function (result) { 
+
+                res.redirect("/orders");
+            }) 
+    })
 
     //
 };
 
 
-/* router.put("/:id", function(req, res) {
-  var condition = "id = " + req.params.id;
 
-  console.log("condition", condition);
-
-  cat.update({
-    sleepy: req.body.sleepy
-  }, condition, function() {
-    res.redirect("/orders");
-  });
-});
- */

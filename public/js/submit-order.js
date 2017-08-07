@@ -21,7 +21,7 @@ function addOrder() {
 
     var newOrder = {
         veggies: selections,
-        UserId: user
+        UserId: user,
     };
 
     $.post("/api/orders", newOrder, function (data) {
