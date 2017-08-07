@@ -36,7 +36,7 @@ module.exports = function (app) {
     var orderData;
 
     app.get("/orders", function (req, res) {
-        
+
         var query1 = db.Veggies.findAll({});
         var query2 = db.Order.findAll({ include: [db.User] })
 
@@ -83,26 +83,37 @@ module.exports = function (app) {
 
     // PUT route for updating posts
     app.put("/api/orders/:id", function (req, res) {
-        console.log(req.body);
-        console.log(req.params.id);
-        console.log(req.body.collected);
-
         var vegArray = req.body.veggies.split(",");
-        console.log(vegArray);
-       db.Order.update(
-            {   veggies: vegArray,
-                collected: req.body.collected},
+
+        db.Order.update(
+            {
+                veggies: vegArray,
+                collected: req.body.collected
+            },
             {
                 where: {
                     id: req.params.id
                 }
-            }).then(function (result) { 
+            }).then(function (result) {
 
                 res.redirect("/orders");
-            }) 
-    })
+            });
+    });
 
-    //
+    app.delete("/api/orders/:id", function (req, res) {
+        var vegArray = req.body.veggies.split(",");
+
+        db.Order.destroy(
+            {
+                where: {
+                    id: req.params.id
+                }
+            }).then(function (dbPost) {
+                res.redirect("/orders");
+            });
+    });
+
+
 };
 
 

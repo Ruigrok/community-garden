@@ -7,9 +7,10 @@ $(document).on("click", "#add-user", function () {
 // add user when enter key is pressed
 $('.userInp').keypress(function (e) {
     if (e.which == 13) {
-        $('#modal1').modal('close');
+        
         addUser();
-        // return false;
+        $('#modal1').modal('close');
+        
         
     }
 });
