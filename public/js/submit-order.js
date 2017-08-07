@@ -27,6 +27,14 @@ function addOrder() {
     $.post("/api/orders", newOrder, function (data) {
         console.log(data);
 
+        $('#veggies').empty();
+        selections = [];
+
+        if (!$('#submit').hasClass("disabled")) {
+            $('#submit').addClass("disabled");
+        };
+
+        $('#modal2').modal('open');
     });
 
 }
